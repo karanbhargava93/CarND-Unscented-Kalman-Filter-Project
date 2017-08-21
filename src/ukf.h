@@ -32,7 +32,7 @@ public:
   MatrixXd Xsig_pred_;
 
   ///* time when the state is true, in us
-  long long time_us_;
+  long long prev_time_us_;
 
   ///* Process noise standard deviation longitudinal acceleration in m/s^2
   double std_a_;
@@ -67,7 +67,19 @@ public:
   ///* Sigma point spreading parameter
   double lambda_;
 
+  ///*NIS Values
+  double NIS_laser_;
+  double NIS_radar_;
 
+
+  MatrixXd Q;
+  MatrixXd R_laser_;
+  MatrixXd R_radar_;
+  ///* Radar measurements
+  int n_z_radar_ = 3;
+
+  ///* Lidar measurements
+  int n_z_lidar_ = 2;
   /**
    * Constructor
    */
@@ -90,6 +102,10 @@ public:
    * @param delta_t Time between k and k+1 in s
    */
   void Prediction(double delta_t);
+  // void GenerateStateSigmaPoints(double delta_t);
+  // void PredictMeanAndCovariance();
+
+
 
   /**
    * Updates the state and the state covariance matrix using a laser measurement
