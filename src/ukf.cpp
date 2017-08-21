@@ -388,9 +388,6 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
   // Initialize the matrix for cross correlation Tc
   MatrixXd Tc = MatrixXd(n_x_, n_z);
 
-  /*****************************************************************************
-  *  UKF Update for Lidar
-  ****************************************************************************/
   // Calculate the cross correlation matrix
   Tc.fill(0.0);
   for (int i = 0; i < 2 * n_aug_ + 1; i++) {  //2n+1 simga points
@@ -496,9 +493,6 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
   // Initialize matrix for cross correlation Tc
   MatrixXd Tc = MatrixXd(n_x_, n_z);
 
-  /*****************************************************************************
-  *  UKF Update for Radar
-  ****************************************************************************/
   //calculate cross correlation matrix
   Tc.fill(0.0);
   for (int i = 0; i < 2 * n_aug_ + 1; i++) {  //2n+1 simga points
